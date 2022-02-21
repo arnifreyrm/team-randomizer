@@ -31,8 +31,6 @@ const HeaderContainer = styled.View`
 const FieldContainer = styled.View`
   flex: 1;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
 `;
 
 const ButtonContainer = styled.View``;
@@ -47,17 +45,20 @@ const NameField = styled.TextInput`
   border-radius: 15px;
 `;
 const WarningText = styled.Text`
-  font-size: 14;
-  color: red;
+  font-size: 14px;
 `;
 
-const AddPlayerContainer = styled.View``;
+const AddPlayerContainer = styled.View`
+  align-items: center;
+  justify-content: center;
+`;
+
 const AddPlayerButton = styled.Button`
   padding: 4px;
 `;
 
 const ListContainer = styled.View`
-  align-items: none;
+  flex: 1;
 `;
 const ListText = styled.Text`
   font-size: 30px;
@@ -76,25 +77,25 @@ export const NamesList = () => {
       <HeaderContainer>
         <Header>Type in names</Header>
       </HeaderContainer>
+
       <FieldContainer>
         <NameField
           placeholder="James Doe"
           onChangeText={(value: string) => setCurrentName(value)}
           ref={inputRef}
         ></NameField>
-        <AddPlayerContainer>
-          <AddPlayerButton
-            title="Add"
-            onPress={() => {
-              if (currentName.length === 0) {
-                setDisplayWarning(true);
-                return;
-              }
-              setNamesList([...namesList, currentName]);
-              inputRef?.current?.clear();
-            }}
-          />
-        </AddPlayerContainer>
+
+        <AddPlayerButton
+          title="Add"
+          onPress={() => {
+            if (currentName.length === 0) {
+              setDisplayWarning(true);
+              return;
+            }
+            setNamesList([...namesList, currentName]);
+            inputRef?.current?.clear();
+          }}
+        />
       </FieldContainer>
       <ListContainer>
         <FlatList
